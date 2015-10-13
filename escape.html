@@ -5,12 +5,11 @@
         <META http-equiv="Content-Script-Type" content="text/javascript">
         <title>HTML escape</title>
 
- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
- 
-<!--         <script type="text/javascript" src="http://lespace.vs.land.to/blog-extension/jquery/jquery-1.5.2.min.js"></script>
-        -->
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+ <script type="text/javascript" src="http://momentjs.com/downloads/moment.min.js"></script>
+
     </head>
-    
+
 <!-- ウィンドウ横幅が狭かったら縦に並べて表示 -->
 <body onresize="reLayoutColumn()">
 
@@ -25,7 +24,7 @@ font-family:'Hiragino Kaku Gothic Pro',Meiryo,'ヒラギノ角ゴ Pro W3','メ�
 font-size:medium;
 }
 
-#container { width:1060px; 
+#container { width:1060px;
 background-color:#FFdFcF;
 }
 
@@ -214,20 +213,20 @@ font-size : 0.7em;
 	background-color:#9be;
 	padding:2px 0 2px 10px ;
 	width:140px;
-	height:24px; 
+	height:24px;
 	font-size :70%;
   	float:right;
 }
 
 .switchon {
 width:57px;
-	height:20px; 
+	height:20px;
 background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/0/8/0849afe7.png);
 }
 
 .switchoff {
 width:57px;
-	height:20px; 
+	height:20px;
 background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 }
 
@@ -241,14 +240,14 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
     	</div>
         <h3 class="whitetitle">エスケープ</h3>
         <textarea id="src" name="src" style="width:100%" rows="10"></textarea>
-            
+
                   <div class="bgs1">
 						<div>
                             <table>
 	                        	<tr>
                         			<td width=240 rowspan="2"><h4>SyntaxHighlight</h4>
 				                        <div class="divin1 yohaku" style="margin:5px;padding:8px;font-size:80%;">
-				                            エスケープする <input type="checkbox" id="htmlescapecheck" checked="checked">  <br />    
+				                            エスケープする <input type="checkbox" id="htmlescapecheck" checked="checked">  <br />
 				                            開始行：<input type="number" id="syntaxfirstline" size="4" min="1"><br />
 				                            ハイライト行
 											<span style="font-size:9px;">(複数カンマ区切)</span>：<br />
@@ -258,7 +257,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 				                            <input type="text" id="syntaxAreaTitle" value="■ ソース">
 				                        </div>
 			                        </td>
-								
+
 									<td width=300>
 	                            		<div class="divin2 yohaku">
 		                                	HTML混在 <input type="checkbox" id="htmlmixcheck" checked="checked"><br />
@@ -272,19 +271,19 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 			                                	onclick="syntaxDisplay('xml')" >HTML/XML</button>
 			                              	<button
 			                                	onclick="syntaxDisplay('css')">CSS</button><br />
-			                              	<button 
+			                              	<button
 		                                		onclick="syntaxDisplay('java')">Java</button>
-			                              	<button 
+			                              	<button
 			                                	onclick="syntaxDisplay('perl')">Perl</button>
 			                              	<button
 			                                	onclick="syntaxDisplay('vb')" >VB</button>
 			                              	<button class="pinkbutton"
 			                                	onclick="syntaxDisplay('sql')" >SQL</button><br />
-			                              	<button 
+			                              	<button
 			                                	onclick="syntaxDisplay('c')">C</button>
-			                              	<button 
+			                              	<button
 			                                	onclick="syntaxDisplay('csharp')">C#</button>
-			                              	<button 
+			                              	<button
 			                                	onclick="syntaxDisplay('objc')">Objective-C</button>
 	                            		</div>
                         			</td>
@@ -298,40 +297,42 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                             <table>
 	                        	<tr>
                         			<td ><h4>エスケープのみ | </h4>
-						              	<button 
+						              	<button
 			                            	onclick="escapeDisplay('html')">HTMLタグ&lt;&gt;&quot;&amp; </button><br />
 		                          	</td>
 		                          	<td>
 		                          		<h4>バックスラッシュで |<br />
 												エスケープ</h4>
-				                          <button 
+				                          <button
 			                            	onclick="escapeDisplay('&quot;', '/')">　&quot; と /　 </button>
-			                          	<button 
+			                          	<button
 			                            	onclick="escapeDisplay('&quot;')"> 　&quot;　  </button>
-			                          	<button 
+			                          	<button
 			                            	onclick="escapeDisplay('/')">　 /　 </button>
 			                          	<button
 			                            	onclick="escapeDisplay('.')">　 .　 </button>
 	                        		</td>
                         			<td ><h4>その他</h4>
-			                          	<button 
+			                          	<button
 			                            	onclick="mysql2tab();">mysqlのselect結果をタブ区切りに</button>
-						              	<button 
+                                        <button
+                                            onclick="apache_to_tsv()">apache logをタブ区切りに</button><br />
+						              	<button
 			                            	onclick="c2a0remover()">C2A0を取り除く(動きません。誰か助けて。）</button><br />
 		                          	</td>
 	                    		</tr>
 	                		</table>
 			            </div>
-		
+
             <h3 class="whitetitle">変換結果</h3>
 
             <textarea id="dst" name="dst" style="width:100%" rows="10"></textarea>
 
             <!-- エスケープされた文字列を元に戻す -->
             <div align="right">
-                <button 
+                <button
                     onclick="deconvert('html')">HTMLエスケープされた文字列を元に戻す</button>
-                <button 
+                <button
                     onclick="deconvert('backslash')">バックスラッシュ・エスケープされた文字列を元に戻す</button>
             </div>
 
@@ -357,94 +358,94 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
         <textarea id="src2" name="src2"  style="width:100%" rows="10"></textarea>
 
         <!-- BOX2 ボタン start -->
-            
+
         <div class="bgs2">     <!-- ボタン くくり start -->
             <table border="0">
                 <tr><td>
-                    <button style="background-color:#aaffaa" 
+                    <button style="background-color:#aaffaa"
                     onclick="makeTag('div', 'inyo')">inyo</button>
                     <button  style="background-color:#FFFFaa"
                     onclick="makeTag('div', 'bgyellow')">bgyellow</button>
-                    
+
                     <button style="background-color:#aaaaff;" onclick="makeTag('div', 'bgaqua')">bgaqua</button>
 
-                    <button  style="background-color:#FFaaaa" 
+                    <button  style="background-color:#FFaaaa"
                     onclick="makeTag('div', 'bgred')">bgred</button>
-                    <button 
+                    <button
                     onclick="makeTag('blockquote', 'blockquote')" >blockquote</button>
-                    <button  
+                    <button
                     onclick="makeTag('blockquote', 'blockquoteWithTitle')">結果+blockquote</button>
 
                     <button class="divin1" style="color:red"
                      onclick="makeTag('span', 'fontred')" >Font Red</button>
                     <button class="divin1" style="color:Green"
                      onclick="makeTag('span', 'fontgreen')" >Font Green</button>
-                    <button class="divin1" style="color:Blue" 
+                    <button class="divin1" style="color:Blue"
                      onclick="makeTag('span', 'fontblue')"  >Font Blue</button>
-                    <button class="divin1"  style="color:#ff0099" 
+                    <button class="divin1"  style="color:#ff0099"
                      onclick="makeTag('span', 'fontpink')">Font Pink</button>
-                    <button class="divin1" style="color:Purple"  
+                    <button class="divin1" style="color:Purple"
                      onclick="makeTag('span', 'fontpurple')">Font Purple</button>
-                    <button class="divin1" style="color:gray" 
+                    <button class="divin1" style="color:gray"
                      onclick="makeTag('span', 'fontgray')" >Font Gray</button>
-                    <button class="divin1" style="font-weight:bold" 
+                    <button class="divin1" style="font-weight:bold"
                      onclick="makeTag('span', 'fontsize1')" >FontSize1</button>
-                    <button class="divin1" style="font-weight:bold" 
+                    <button class="divin1" style="font-weight:bold"
                      onclick="makeTag('span', 'fontsize2')" >FontSize2</button>
 
-                    <button 
+                    <button
                      onclick="makeTag('span', 'b')" ><b>Bold</b></button><br />
 
 
-                    <button class="bluebutton" style="color:#33f" 
+                    <button class="bluebutton" style="color:#33f"
                     onclick="makeTag('span', 'bluetitle')">span bluetitle</button>
-                    <button class="pinkbutton" style="color:#000" 
+                    <button class="pinkbutton" style="color:#000"
                     onclick="makeTag('span', 'pinktitle')">span pinktitle</button>
-                    <button class="divin2" style="color:#000" 
+                    <button class="divin2" style="color:#000"
                     onclick="makeTag('span', 'orangetitle')">span orangetitle</button>
 
 
                     <button style="background-color:#FFFFaa"
                      onclick="makeTag('span', 'highlight')">Highlight</button>
-                    <button style="background-color:#88ffaa" 
+                    <button style="background-color:#88ffaa"
                      onclick="makeTag('span', 'highlight2')">Highlight2</button><br />
 
-                     
-                    <button class="h3button" style="color:#fff" 
+
+                    <button class="h3button" style="color:#fff"
                     onclick="makeTag('h3', 'bluetitle')">H3 Blue</button>
-                    <button class="h3button" style="color:#fff" 
+                    <button class="h3button" style="color:#fff"
                     onclick="makeTag('h3', 'pinktitle')">H3 Pink</button>
-                    <button class="h3button" style="color:#fff" 
+                    <button class="h3button" style="color:#fff"
                     onclick="makeTag('h3', 'orangetitle')">H3 Orange</button>
-                    <button class="h4button"  
+                    <button class="h4button"
                     onclick="makeTag('h4', 'bluetitle')">H4 Blue</button>
-                    <button class="h4button" 
+                    <button class="h4button"
                     onclick="makeTag('h4', 'pinktitle')">H4 Pink</button>
-                    <button class="h4button" 
+                    <button class="h4button"
                     onclick="makeTag('h4', 'orangetitle')">H4 Orange</button><br />
 
                     <button
                     onclick="onebyteStringColor1('h')" >半角に色</button>
                     <button
                     onclick="onebyteStringColor2('h','k')" >半角に色（記号別）</button>
-                    <button style="color:#6666cc" 
+                    <button style="color:#6666cc"
                     onclick="setMidashi('h3', '■')">行頭■をH3に◇をh4に</button>
-                    <button style="background-color:#ff6666" 
+                    <button style="background-color:#ff6666"
                     onclick="createALink()">&lt;A>リンク作成</button>
 
                 </td></tr>
             </table>
 
-        </div>    <!-- ボタン くくり end -->   
+        </div>    <!-- ボタン くくり end -->
          <!-- BOX 2 のボタン終わり -->
 
 
         <!-- BOX2下側 ボタン -->
         <div class="bgs2">    <!-- ボタン くくり start -->
             テキスト置換
-                  <button 
+                  <button
                    onclick="br2n()">&lt;BR />を\nに</button>
-                  <button 
+                  <button
                    onclick="n2br()">\nを&lt;BR />に</button>
                   <button
                    onclick="br2nn()">改行を２倍に</button>
@@ -461,7 +462,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                    onclick="setformlist()">setformlist</button>
                   <button id="replaceorignaltag"
                    onclick="replaceorignaltag()">replaceorignaltag</button>
-                    <button 
+                    <button
                     onclick="makeTagFree('[b][color=CC0000]', '[/color][/b]')">[b][color=CC0000]</button>
 
         </div> <!-- ボタン くくり end -->
@@ -484,15 +485,15 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 				function coltonum(frm) {
 					//10以下の数字をアルファベットにするための配列 11以上は２６進数の返り値そのままでok
 					alp = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
-					
+
 					var num = document.getElementById("excelbefore").value;
 					var num_obj = new Number(num);
-					
+
 					if (isNumeric(num)) {
 						var conv = ''; //変換後のアルファベット
 						var k_26sin = num_obj.toString(26);  //26進数に変換
 						console.log("k_26sin:"+k_26sin); //26進数
-						
+
 						//桁数ごとに取り出してアルファベットに変換
 						var i = 0; //処理中の桁数
 						while (i < k_26sin.length) {
@@ -509,28 +510,28 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 							}
 
 							 console.log("toridashi10sin:"+toridashi10sin);
-							 
+
 							conv += alp[toridashi10sin]; //アルファベットに変換
-							
+
 							console.log(conv);
 	*/						i++;
 						}
 					document.getElementById("excelafter").value = conv.toUpperCase();
 					} else {
-					
+
 						var conv = 0; //変換後の数字
-						
+
 						//桁数ごとに取り出して数字に変換
 						var i = 0; //処理中の桁数
 						while (i < num.length) {
 							var toridashi = num.substr(i,1); //先頭から一文字ずつ取り出す
-							console.log(toridashi); 
-							var c = toridashi.toLowerCase(); 
-							
+							console.log(toridashi);
+							var c = toridashi.toLowerCase();
+
 							//アルファベットを数字にする A=1, Z=26にする
 							var suji = alp.indexOf(c) + 1;
 							console.log(suji);
-							
+
 							var keta = num.length - i - 1; //桁数-1
 							//console.log("Math.pow(26,"+keta+")");
 
@@ -557,7 +558,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 				    return true;
 				}
 			</script>
-			
+
 		</div><!-- box1と見せかけたbox3 -->
     </div> <!-- .wrap -->
 </div> <!-- container -->
@@ -568,16 +569,16 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
          <!-- BOX1 スクリプト開始 -->
          <script language="javascript">
-                  
+
             /* SyntaxHighlighter用にコンバートするsyntaxDisplay関数の定義 */
             /* 引数１は言語名：<pre class="brush : 言語"> に使われる*/
-            function syntaxDisplay(lang) {            
-                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+            function syntaxDisplay(lang) {
+                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
                 var str = getText('#src');
-             
+
                 /* 出力用の変数res。*/
                 var res = '';
-                
+
                 // タイトル表示指定があればタイトルを追加
                 var bTitle = document.getElementById("withSyntaxAreaTitle").checked; //default=false
                 if (bTitle) {
@@ -588,7 +589,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                 /*preタグを作り 中に引数でもらった言語名を入れる              */
                 /* エスケープのみ(引数なし)の場合は初期化のみ */
                 res += '<pre class="brush : ' + lang + ' ;';
-                 
+
                 // php or js のみコード追加
                 if (lang == "js" || lang == "php") {
                     /* php or js時のみ、htmlコードも色付けさせるため
@@ -597,9 +598,9 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                     var bHtmlMixed = document.getElementById("htmlmixcheck").checked; //default=true
                     res += ' html-script:' + bHtmlMixed + ';';
                 }
-                 
+
                 // 行数指定があればクラスにfirstline[]を追加
-                var rownumber = getText('#syntaxfirstline'); 
+                var rownumber = getText('#syntaxfirstline');
                 if (isRegNum(rownumber)) {
                    res += ' first-line:[' + rownumber + '];';
                 }
@@ -615,14 +616,14 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 							if (i == 0) {
 			                   res += ' highlight:[' + rownum;
 			                   highlightFlag = true;
-							} else {			                   
+							} else {
 			                   res += ' ,' + rownum;
-							}			                   
+							}
 						}
                    }
 					if (highlightFlag == true) res += '];';
                 }
-                
+
                 //  pre開始タグを閉じる
                     res += '">';
 
@@ -636,55 +637,55 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                     // エスケープしないでそのまま代入
                     res += str;
                 }
-                
+
                 /* resに</pre>タグを追加して、res完成。*/
                 /* エスケープのみ(引数なし)の場合は処理なし */
                     res += '</pre>\n'
-                 
-                // textareaへ結果を表示する          */     
+
+                // textareaへ結果を表示する          */
                 updateResult(res, '#dst');
-        
+
                 // 次の入力に備え、数秒後にテキストエリアをクリア
                 resetTextArea();
             };
-        
+
             // HTMLタグをエスケープする関数
             // 引数は 元の文字列
             function htmlTagEscape(str) {
 
                 // 処理後に完成する文字列（返り値）
                 var escapedStr = '';
-                    
+
                 // エスケープ開始
                 for (var i = 0; i < str.length; ++i) {
                     /* 元の文字列を1文字ずつに分解してtmpに代入               */
                     var tmp = str.charAt(i);
                     /* switch文で置換           */
                     switch(tmp) {
-                        /* & < > " を置換してresに追加する       */   
+                        /* & < > " を置換してresに追加する       */
                         case '&': escapedStr += '&amp;';       break;
                         case '<': escapedStr += '&lt;';   break;
                         case '>': escapedStr += '&gt;';   break;
-                        case '"': escapedStr += '&quot;'; break; 
+                        case '"': escapedStr += '&quot;'; break;
                         /* その他はそのままresへ追加           */
                         default : escapedStr += tmp;            break;
                     }
                 }
              return escapedStr;
                 }
-                
-                
-                
-            /* 特定文字のエスケープ処理をして表示するescapeDisplay関数の定義 
+
+
+
+            /* 特定文字のエスケープ処理をして表示するescapeDisplay関数の定義
                  引数１は記号指定：<>”&/ どの記号をエスケープするのか指定。可変個引数という超絶技を使用。
                 http://www.atmarkit.co.jp/fdotnet/ajaxjs/ajaxjs02/ajaxjs02_04.html        　*/
             function escapeDisplay(symbol) {
-                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
                 var str = getText('#src');
-             
+
                 /* 出力用の変数res。  */
                  var res = '';
-                 
+
                 /* エスケープ変換   */
                 // htmlの場合
                 if (symbol == 'html') {
@@ -694,14 +695,14 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                     arguments関数には渡された引数すべて(symbolが複数)が格納されている        */
                        res += backSlashEscape(str, arguments);
                    }
-                                           
-                // textareaへ結果を表示する          */     
+
+                // textareaへ結果を表示する          */
                 updateResult(res, '#dst');
-        
+
                 // 次の入力に備え、数秒後にテキストエリアをクリア
                 resetTextArea();
             };
-        
+
 
             // 文字列をバックスラッシュ・エスケープする関数
             // 引数は 元の文字列、変更する記号が複数含まれた配列【要注意】
@@ -709,7 +710,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
                 // 処理後に完成する文字列（返り値）
                 var escapedStr = '';
-                    
+
                 // エスケープ開始
                 // １文字ループ開始。ネストされたループを抜けるためループに名前を付ける
                 loop1:
@@ -723,15 +724,15 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
                     /* 引数の記号判定ループ開始。  */
                     loop2:
-                    for (var j=0; j < symbolArray.length; ++j) { 
-                        
-                        if ((symbolArray[j] == "\"") && (tmp == "\"")) { //記号指定に " があったら置換         
+                    for (var j=0; j < symbolArray.length; ++j) {
+
+                        if ((symbolArray[j] == "\"") && (tmp == "\"")) { //記号指定に " があったら置換
                             escapedStr += '\\"';
                               continue loop1; // 上位階層の１文字ループにスキップ
-                        } else if ((symbolArray[j] == "/") && (tmp == "/")) {//記号指定に / があったら置換  
+                        } else if ((symbolArray[j] == "/") && (tmp == "/")) {//記号指定に / があったら置換
                             escapedStr += '\\/';
                               continue loop1;
-                        } else if ((symbolArray[j] == ".") && (tmp == ".")) {//記号指定に . があったら置換  
+                        } else if ((symbolArray[j] == ".") && (tmp == ".")) {//記号指定に . があったら置換
                             escapedStr += '\\.';
                               continue loop1;
                         } else {
@@ -740,7 +741,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                                 continue loop2;
                             } else {
                                  //このループ(引数の記号判別)最後なら
-                                 // tmpをそのままescapedStrへ追加   
+                                 // tmpをそのままescapedStrへ追加
                                 escapedStr += tmp;
                                 continue loop1;
                               }
@@ -749,90 +750,90 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                 }
                 return escapedStr;
                 }
-            
+
             /* エスケープされた文字列を元に戻すdeconvert関数 */
             function deconvert(type) {
-                     /* 結果テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+                     /* 結果テキストエリアから文字列取得＆文頭・文末の改行を削除        */
                     var str = getText('#dst');
-                    
+
                     /* convert関数でついたpreタグを削除 */
                     if (str.match(/^<pre class="brush/)) {
 	                    str = str.replace(/^<pre.+?>/, '');
 	                    str = str.replace(/<\/pre>/, '');
 					}
-					        
+
                     /* デ・エスケープ開始  */
                     if (type=='html') { // HTMLタグを置換
                         str = str.replace(/&lt;/g,'<');
                         str = str.replace(/&gt;/g,'>');
                         str = str.replace(/&quot;/g,'"');
                         str = str.replace(/&#39;/g,'"');
-                        str = str.replace(/&amp;/g,'&'); 
+                        str = str.replace(/&amp;/g,'&');
                     } else if (type =='backslash') { // バックスラッシュを置換
                         str = str.replace(/\\\"/g,'"');    // "ダブルクオーテーション
-                        str = str.replace(/\\\//g,'/');        // スラッシュ        
-                        str = str.replace(/\\\./g,'/');        // ピリオド       
-                    }    
-                    /* 変換終了         */     
-                    /* 元の方のtextareaへ結果を表示する          */     
+                        str = str.replace(/\\\//g,'/');        // スラッシュ
+                        str = str.replace(/\\\./g,'/');        // ピリオド
+                    }
+                    /* 変換終了         */
+                    /* 元の方のtextareaへ結果を表示する          */
                     updateResult(str, "#src");
-        
+
                     // 次の入力に備え、15秒後にテキストエリアをクリア
                     resetTextArea('15');
-            
+
             };
-            
-            // 動作チェック用のサンプルHTMLタグを変換元テキストエリアへ挿入    
-            function insertSampleCode() { 
+
+            // 動作チェック用のサンプルHTMLタグを変換元テキストエリアへ挿入
+            function insertSampleCode() {
                 var text ="<div class=\"box\">タグ&タグ</div>";
                 $('#src').val(text);
                 $('#src2').val(text);
-                
+
                 // クリアタイマーをリセット
                 window.clearTimeout(timer);
             }
-        
+
 
         //]]>
-        
-        
-        
-        
-        
-        
-            function mysql2tab() {            
-                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+
+
+
+
+
+
+            function mysql2tab() {
+                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
                 var str = getText('#src');
-             
+
                 /* 出力用の変数res。*/
                 var res = '';
 
 				// タイトルの罫線を取り除く
 				res = str.replace(/\s*?\+[\+|-]+\+\s*$/gm,"");
-					
+
 				// 罫線をタブにする（データの中に罫線あったらそれも置換されちゃう）
 				res = res.replace(/\|/g,"\t");
 				//タブの後の半角空白を削除
-				res = res.replace(/\t +/gm,"\t"); 
+				res = res.replace(/\t +/gm,"\t");
 				//タブ前の半角空白を削除
-				res = res.replace(/ +\t/gm,"\t"); 
+				res = res.replace(/ +\t/gm,"\t");
 				//改行前の半角空白を削除
-				res = res.replace(/[ +|\t+]([\n|\r])/g,"$1"); 
-				
-                // textareaへ結果を表示する          */     
+				res = res.replace(/[ +|\t+]([\n|\r])/g,"$1");
+
+                // textareaへ結果を表示する          */
                 updateResult(res, '#dst');
-        
+
                 // 次の入力に備え、数秒後にテキストエリアをクリア
                 resetTextArea();
             };
 
-        
-        
-        
-            function c2a0remover() {            
-                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+
+
+
+            function c2a0remover() {
+                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
                 var str = getText('#src');
-             
+
                 /* 出力用の変数res。*/
                 var res = '';
 
@@ -840,23 +841,66 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 	              // res = str.replace(/\160/,"").replace(/\xA0/,"").replace(/\s+/," ");
 				//	res = str.replace(/&amp;nbsp;/g,"");
 		//			res = str.replace(/&nbsp;/g, ' ');
-			
+
 //  var re = new RegExp(String.fromCharCode(160), "g");
  // res = str.replace(re, " ");
-					
+
 //					res = str.replace(String.fromCharCode(160), " ");
 					res = str.replace(new RegExp(NBSP, "g"), SP);
-					
-					
-					
-                // textareaへ結果を表示する          */     
+
+
+
+                // textareaへ結果を表示する          */
                 updateResult(res, '#dst');
-        
+
                 // 次の入力に備え、数秒後にテキストエリアをクリア
                 resetTextArea();
             };
 
-        
+
+
+            function apache_to_tsv() {
+
+                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
+                var str = getText('#src');
+
+                /* 出力用の変数res。*/
+                var res = '';
+
+                //apache log形式の時刻をわかりやすい形式にする
+                //1行ずつ操作
+                $.each( str.split('\n'), function(i,e){
+                    console.log(e);
+                    apache_datetime = e.match(/\d{2}\/\w{3}\/20\d{2}:\d{2}:\d{2}:\d{2}/gi);
+                    console.log(apache_datetime);
+
+                    yyyymmdd = moment(apache_datetime, 'DD/MMM/YYYY:HH:mm:ss Z').format("YYYY-MM-DD")
+                    hhmmss = moment(apache_datetime, 'DD/MMM/YYYY:HH:mm:ss Z').format("HH:mm:ss")
+
+
+
+                    res += this + "\t" + yyyymmdd + "\t" + hhmmss + "\n";
+                });
+
+
+                //まとめて時刻等をタブ区切りにする
+                res = res.replace(/ - - \[/gm, "\t");
+                res = res.replace(/\s\+0900]\s/gm, "\t");
+                res = res.replace(/GET\s/gm, "GET\t");
+                res = res.replace(/POST\s/gm, "POST\t");
+                res = res.replace(/"/g, "");
+                res = res.replace(/(\d{4}):/gm, "$1\t");
+
+
+                // textareaへ結果を表示する          */
+                updateResult(res, '#dst');
+
+                // 次の入力に備え、数秒後にテキストエリアをクリア
+                resetTextArea();
+
+
+
+            }
         </script>      <!-- BOX1 スクリプト -->
 
 
@@ -872,13 +916,13 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
      <!-- BOX 2 のスクリプト start -->
     <script type="text/javascript">
-    
+
     // タグで囲む関数
     function makeTag(tag, cls) {
-    
-             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+
+             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
             var str = getText('#src2');
-    
+
             // blockquoteの場合
             if (tag == "blockquote") {
                 if (cls == "blockquote") {
@@ -890,26 +934,26 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                 res += str;
                 res += '</blockquote>';
                 }
-                
+
             // divの場合
             } else if (tag == "div") {
                 /* 出力用の変数res。divタグを作り 中に引数でもらったクラス名を入れる              */
                 var res = '<div class="' + cls + '">';
-                /* さらに元データを入れる              */ 
+                /* さらに元データを入れる              */
                 res += str;
-                    /* </div>タグ閉じる            */ 
+                    /* </div>タグ閉じる            */
                 res +=  '\n<\/div>\n';
-                
+
             // その他の場合
             } else {
                 var res = '<' + tag + ' class="' + cls + '">';
                 res += str;
                 res += '</' + tag + '>';
             }
-       
-            //* resを出力。textareaへ結果を表示する          */     
+
+            //* resを出力。textareaへ結果を表示する          */
             updateResult(res, "#dst2");
-    
+
             // 次の入力に備え、数秒後にテキストエリアをクリア
             resetTextArea();
 
@@ -921,14 +965,14 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
     // 自由なタグで囲む関数。引数で開始タグと終了タグを指定
     function makeTagFree(starttag, closetag) {
 
-             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
             var str = getText('#src2');
 
                     var res = starttag;
                     res += str;
                     res += closetag;
 
-            //* resを出力。textareaへ結果を表示する          */     
+            //* resを出力。textareaへ結果を表示する          */
             updateResult(res, "#dst2");
 
             // 次の入力に備え、数秒後にテキストエリアをクリア
@@ -941,7 +985,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
     // 半角英数字記号に色をつける関数
     function onebyteStringColor1(class1) {
-             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
             var str = getText('#src2');
 
             /* 入力内容の文字数をlenに代入 （forループ用)                */
@@ -950,7 +994,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
             var result = '';
             /* マークアップ中かどうかのフラグ   */
             var marking = false ;
-            
+
 
             /* 変換作業スタート。                */
             for (var i = 0; i < len; ++i) {
@@ -961,9 +1005,9 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                 /* 次の文字をnexttmpに代入。
                     次の文字がスペースの場合はスペース以外の文字を拾う */
                 var nexttmp = str.charAt(i+1);        // 次の文字
-                for (var cnt = 2; cnt < len; ++cnt) { 
+                for (var cnt = 2; cnt < len; ++cnt) {
                    if (nexttmp.match( /\s/)) {
-                        nexttmp = str.charAt(i+cnt);  
+                        nexttmp = str.charAt(i+cnt);
                     }
                 }
 
@@ -1036,10 +1080,10 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
 
 
-    
+
     // 半角英数字に色をつける関数（記号は別の色）
     function onebyteStringColor2(class1, class2) {
-             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
             var str2 = getText('#src2');
 
             /* 入力内容の文字数をlenに代入 （forループ用)                */
@@ -1070,7 +1114,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                         /* １セットのマークアップが終わったので、最終出力変数resにeisuを追加 */
                         res2 += eisu;
                         /* 英数字マークアップひとつ分を入れておく変数eisuを再度初期化 */
-                        var eisu = '<span class="' + class1 + '">'; 
+                        var eisu = '<span class="' + class1 + '">';
                     }
                 } else if (tmp.match( /[!-/:-@[-`{-~]+/ )) { /* tmpが半角記号かどうか調べる */
                     /* その次の文字も半角記号かどうか調べる   */
@@ -1099,20 +1143,20 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
     // 行頭■を<h3>見出しタグに
     function setMidashi() {
-        /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+        /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
         var str1 = getText('#src2');
-        
+
         // 変換関数へ投げる（返り値は変換後の文字列）
         var str2 = findAndRowTagging(str1, '■', 'h3', 'bluetitle');
         var str3 = findAndRowTagging(str2, '◇', 'h4', 'orangetitle');
 
-        var res = str3;        
+        var res = str3;
 
         // 最後にresを出力
         updateResult(res, "#dst2");
 
         // 次の入力に備え、数秒後にテキストエリアをクリア
-        resetTextArea();   
+        resetTextArea();
 
     }
 
@@ -1122,8 +1166,8 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
             /* 行ごとに分解 */
             var row = str.split("\n");
             var res = '';
-            
-            // 正規表現内で変数(findmark)を使うため、RegExpオブジェクトを使う 
+
+            // 正規表現内で変数(findmark)を使うため、RegExpオブジェクトを使う
             // 検索キーワードを設定(findmark変数を使うためこのワンクッションが必要）
             var seikiword = "^\\s*" + findmark; // スペースと目印を探す
 
@@ -1147,15 +1191,15 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
 
     // Aリンクを作る関数
-    function createALink() {    
-             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+    function createALink() {
+             /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
             var str3 = getText('#src2');
 
             /* A リンク作成　タイトル入れるの難しいので保留
 
             // リンク先のページタイトル取得
             if (encURL(str3)) {
-                var linkTitle = getTitle(str3); 
+                var linkTitle = getTitle(str3);
                 };
 
             if (linkTitle) {
@@ -1169,9 +1213,9 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
             // 次の入力に備え、数秒後にテキストエリアをクリア
             resetTextArea();
     }
-    
+
     //]]>
-    
+
     </script> <!-- BOX2 スクリプト -->
 
 
@@ -1184,69 +1228,69 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
     /* br2n関数の定義 引数なし */
     function br2n() {
 
-         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
         var tex = getText('#src2');
 
         // 変換開始
         tex = tex.replace(/(<br \/>|<br>)/g, "\n\n");
 
-        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */     
+        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */
         updateResult(tex, "#dst2");
 
         // 次の入力に備え、数秒後にテキストエリアをクリア
         resetTextArea();
 
     }
-     
+
     /* n2br関数の定義 引数なし */
     function n2br() {
 
-         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
         var tex = getText('#src2');
 
         // 変換開始
         tex = tex.replace(/\n/g, "<br />");
 
-        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */     
+        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */
         updateResult(tex, "#dst2");
 
         // 次の入力に備え、数秒後にテキストエリアをクリア
         resetTextArea();
     }
-     
+
     /* br2nn関数の定義 引数なし */
-    function br2nn() { 
-         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+    function br2nn() {
+         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
         var tex = getText('#src2');
-        
+
         // 変換開始
         tex = tex.replace(/\n/g, "\n\n");
 
-        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */     
+        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */
         updateResult(tex, "#dst2");
         // 次の入力に備え、数秒後にテキストエリアをクリア
         resetTextArea();
     }
 
     /* brbr2n関数の定義 改行を1/2にする 引数なし */
-    function brbr2n() { 
-         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+    function brbr2n() {
+         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
         var tex = getText('#src2');
-        
+
         // 変換開始
         tex = tex.replace(/\n\n/g, "\n");
 
-        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */     
+        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */
         updateResult(tex, "#dst2");
         // 次の入力に備え、数秒後にテキストエリアをクリア
         resetTextArea();
     }
 
-   
-    /* imagenumbering関数の定義 引数は逆順にするかどうか */
-    function imagenumbering(rotation) { 
 
-         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+    /* imagenumbering関数の定義 引数は逆順にするかどうか */
+    function imagenumbering(rotation) {
+
+         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
         var tex = getText('#src2');
 
         // 取得したテキストを <br /> で分割し、セクションごとに分かれた配列に格納
@@ -1254,7 +1298,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
         // 配列の最後に空の要素が入るので、それを削除
 		if (textarray.length > 1)  textarray.pop();
-        
+
         /* 出来上がりのstring変数 */
         var convertedtext = '';
 
@@ -1267,8 +1311,8 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
             convertedtext += '■■■ ' + i + ' ■■■ ' + i + ' ■■■ ' + i + ' ■■■ ' + '\n';
             convertedtext += textarray[i] + '\n--------------------------------------------\n\n';
 		}
-			
-        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */     
+
+        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */
         updateResult(convertedtext, "#dst2");
         // 次の入力に備え、数秒後にテキストエリアをクリア
         resetTextArea();
@@ -1277,8 +1321,8 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
 
     function remove_htmltags() {
- 
-       /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+
+       /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
       var str = getText('#src2');
       delete01 = new RegExp(/\n/g);
       delete02 = str.replace(delete01, "");
@@ -1287,17 +1331,17 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
       rgexp = new RegExp(/<("[^"]*"|'[^']*'|[^'">])*>/g);
       convertedtext = delete04.replace(rgexp, "");
 
-        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */     
+        /* 変換終了 textareaへ結果を表示する 引数（結果文字列、出力するtextarea名)   */
         updateResult(convertedtext, "#dst2");
         // 次の入力に備え、数秒後にテキストエリアをクリア
-        resetTextArea();    
+        resetTextArea();
       }
 
 
-    /* 指定のフォーマットに変換 
+    /* 指定のフォーマットに変換
     連絡先 \t 090-12345678 を < 連絡先 > 090-12345678 にする */
     function setformlist() {
- 
+
         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
         var str = getText('#src2');
 
@@ -1305,7 +1349,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
         var row = str.split("\n");
         var oneword = '';
         var res = '';
-        
+
         // 検索キーワードを設定
         var seikiword = "\t"; // tabを探す
 
@@ -1326,13 +1370,13 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
         /* textareaへ結果を表示する */
         updateResult(res, "#dst2");
         // 次の入力に備え、数秒後にテキストエリアをクリア
-        resetTextArea();    
+        resetTextArea();
      }
 
 
     /* <em><strong>を指定の方式に置換 */
     function replaceorignaltag() {
- 
+
         /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
         var str = getText('#src2');
 
@@ -1351,7 +1395,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
         /* textareaへ結果を表示する */
         updateResult(str10, "#dst2");
         // 次の入力に備え、数秒後にテキストエリアをクリア
-        resetTextArea();    
+        resetTextArea();
      }
 
 
@@ -1369,11 +1413,11 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 <script language="javascript">
 
 
-    
+
     // ページ表示時にウィンドウ幅によってレイアウトを自動修正（body onloadが利かなかった、関数実行をちょい遅らせる。)
     window.setTimeout( function() {  reLayoutColumn(); }, 50); // 秒数
-    
-    <!-- ウィンドウ横幅が狭かったら縦に並べて表示 -->    
+
+    <!-- ウィンドウ横幅が狭かったら縦に並べて表示 -->
     function reLayoutColumn() {
         if (getBrowserWidth()<1060) {
             document.getElementById('container').style.width='530px';
@@ -1381,45 +1425,45 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
             document.getElementById('container').style.width='1060px';
         }
     }
-    
-    // getBrowserWidth() by Cameron Adams  
-    // http://www.themaninblue.com/experiment/ResolutionLayout/  
-    function getBrowserWidth ( ) {  
-        if ( window.innerWidth ) { return window.innerWidth; }  
-        else if ( document.documentElement && document.documentElement.clientWidth != 0 ) { return document.documentElement.clientWidth; }  
-        else if ( document.body ) { return document.body.clientWidth; }  
-        return 0;  
-    }  
-    
 
-    
+    // getBrowserWidth() by Cameron Adams
+    // http://www.themaninblue.com/experiment/ResolutionLayout/
+    function getBrowserWidth ( ) {
+        if ( window.innerWidth ) { return window.innerWidth; }
+        else if ( document.documentElement && document.documentElement.clientWidth != 0 ) { return document.documentElement.clientWidth; }
+        else if ( document.body ) { return document.body.clientWidth; }
+        return 0;
+    }
+
+
+
     /*   [CTRL]+[ENTER]でjsボタン押下するようにする */
     /* すべてのキーアップイベントを監視する */
     /* キーアップがあったらinput関数呼び出し */
     window.document.onkeydown = input;
- 
+
     /*   [CTRL]+[ENTER]でjsボタン押下 */
     function input(theEvent){
         if(theEvent.ctrlKey) {
             if(theEvent.keyCode == 13) {
                 /*   covert('js') だけではイベントハンドラとコールバック関数の問題から
                     convert関数の中のreturn funcion()クロージャまで呼び出せないので
-                    一度変数fromKeyConvertに格納し、変数から呼び出すことでクロージャ内をreturnさせる。 
-                    参考　http://karafuto50.blog117.fc2.com/?mode=m&no=136　*/ 
+                    一度変数fromKeyConvertに格納し、変数から呼び出すことでクロージャ内をreturnさせる。
+                    参考　http://karafuto50.blog117.fc2.com/?mode=m&no=136　*/
                 var fromKeyConvert = syntaxDisplay('js');
                 fromKeyConvert();
-                return false;           
+                return false;
             }
         }
     }
-    
+
 
     /* クリア連打対策　グローバル変数timerをここで宣言しておく */
     var timer = '';
-    
+
     /* 自動クリアon,off  デフォルト = true = on*/
     var bEnableTimer = true;
-    
+
     // タイマーon/off切り替え
     function enableTimer() {
     	if(bEnableTimer == true) {
@@ -1433,17 +1477,17 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 		    $.cookie('Timer','on',{ expires: 99 });//書き込み{保存days}
 
 		}
-	}    
-    
+	}
 
-    /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */         
+
+    /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
     function getText(id) {
         var str = $(id).val();
         str = removeBreaks(str);
         return str;
     }
 
-    /* 文頭・文末の改行を削除        */         
+    /* 文頭・文末の改行を削除        */
     function removeBreaks(str) {
         // 文頭
         str = str.replace(/^(\r\n)+|^(\n\r)+|^(\r)+|^(\n)+/gi, "");
@@ -1456,11 +1500,11 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
     // テキストエリアを自動リセットするグローバル関数　引数が秒数
     function resetTextArea(second) {
-		if (bEnableTimer) {	
+		if (bEnableTimer) {
 	        window.clearTimeout(timer);
 	        // 引数なければ3秒にする
 	        if (second == undefined) second = 3;
-		
+
 	        // alert(second + '秒後にクリア');
 	        //clearTimeoutを使うためグローバル変数timerにsetTimeoutを代入する
 	        timer = window.setTimeout( function() {
@@ -1477,16 +1521,16 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
 
     // 次の入力に備え、指定秒たったらテキストエリアをリセットする
-    /* 結果エリアに文字列を表示＆コピーしやすいように結果エリアをフォーカスする        */     
+    /* 結果エリアに文字列を表示＆コピーしやすいように結果エリアをフォーカスする        */
     function updateResult(text, area) {
         $(area).val(text);
-        /* コピーしやすいようにする         */     
+        /* コピーしやすいようにする         */
         $(area).focus();          //結果テキストエリアをフォーカスする
         $(area).select();         //結果テキストエリアを全選択する
     }
-    
-        
-    
+
+
+
      /** http://phpjavascriptroom.com/?t=js&p=formcheck#a_isRegNum
      * [関数名] isRegNum
      * [機　能] 数値チェック（正規表現）
@@ -1502,18 +1546,18 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
         //alert ("全て数値です");
         return true;
     }
-            
+
 </script> <!-- 共用関数ここまで -->
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
  <!-- 使っていない -->
 <script language="javascript">
-     
+
     /* 使っていない関数↓ */
     // URLが正しいかチェックする関数
     function encURL( url ){
@@ -1531,8 +1575,8 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
         }
         return ret;
     }
-    
-    
+
+
     /* 使っていない関数↓ */
     // リンク先のタイトルを取得してreturnする関数
     // 同一ホストじゃないと動かない・・・。
@@ -1541,9 +1585,9 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
             alert(リンク先のアドレスが空です);
             return '';
         }
-    
+
         xmlhttp = new XMLHttpRequest();
-    
+
         try{
             xmlhttp.open("GET",url,false);
             xmlhttp.send(null);
@@ -1580,7 +1624,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-  
+
 </script><!-- google analytics -->
 
 
