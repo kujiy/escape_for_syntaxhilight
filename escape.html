@@ -341,6 +341,9 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
             <button style="background-color:#aaffaa" onclick="insertSampleCode()">サンプルHTMLタグを挿入(動作チェック用)</button>
              <!-- 動作チェック用に使うサンプルHTMLタグ ↑-->
 
+             <!-- 動作チェック用に使うサンプル　↓ -->
+            <button style="background-color:#aaffaa" onclick="insertSampleApacheLog()">サンプルapache logを挿入(動作チェック用)</button>
+             <!-- 動作チェック用に使うサンプル ↑-->
         </div> <!-- floatleft box -->
 
 
@@ -794,6 +797,17 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
             }
 
 
+            // 動作チェック用のサンプルpacheLogを変換元テキストエリアへ挿入
+            function insertSampleApacheLog() {
+                var text ="\n153.179.28.193 - - [12/Oct/2015:09:30:10 +0900] \"GET /samp.php?callback=11 HTTP/1.1\" 200 34349 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n172.22.123.153 - - [12/Oct/2015:09:30:16 +0900] \"GET /serv/authCheck/?a=7 HTTP/1.1\" 200 37 \"-\" \"Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16 ( .NET CLR 3.5.30729)\"\n153.179.28.193 - - [12/Oct/2015:09:30:16 +0900] \"GET /samp.php?callback=2 HTTP/1.1\" 200 34346 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n172.22.123.153 - - [12/Oct/2015:09:30:30 +0900] \"GET /serv/authCheck/?a=7 HTTP/1.1\" 200 37 \"-\" \"Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16 ( .NET CLR 3.5.30729)\"\n153.179.28.193 - - [12/Oct/2015:09:30:30 +0900] \"GET /samp.php?callback=13 HTTP/1.1\" 200 34349 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST /serv/guest/ HTTP/1.1\" 200 207 \"https://mapmark.fmworld.net/serv/login/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST /serv/start/guest/ HTTP/1.1\" 200 1133 \"https://mapmark.fmworld.net/serv/login/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST / HTTP/1.1\" 302 - \"https://mapmark.fmworld.net/serv/start/guest/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"";
+                $('#src').val(text);
+                $('#src2').val(text);
+
+                // クリアタイマーをリセット
+                window.clearTimeout(timer);
+            }
+
+
         //]]>
 
 
@@ -870,16 +884,17 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                 //apache log形式の時刻をわかりやすい形式にする
                 //1行ずつ操作
                 $.each( str.split('\n'), function(i,e){
-                    console.log(e);
+                    // console.log(e);
                     apache_datetime = e.match(/\d{2}\/\w{3}\/20\d{2}:\d{2}:\d{2}:\d{2}/gi);
-                    console.log(apache_datetime);
+                    // console.log(apache_datetime);
 
                     yyyymmdd = moment(apache_datetime, 'DD/MMM/YYYY:HH:mm:ss Z').format("YYYY-MM-DD")
                     hhmmss = moment(apache_datetime, 'DD/MMM/YYYY:HH:mm:ss Z').format("HH:mm:ss")
 
+                    out = e.replace(/\s\d{2}\/\w{3}\/20\d{2}:\d{2}:\d{2}:\d{2}/gi, "\t"+yyyymmdd+"\t"+hhmmss);
 
-
-                    res += this + "\t" + yyyymmdd + "\t" + hhmmss + "\n";
+                    //行番号を付与
+                    res += i + "\t" + out + "\n";
                 });
 
 
@@ -890,6 +905,9 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                 res = res.replace(/POST\s/gm, "POST\t");
                 res = res.replace(/"/g, "");
                 res = res.replace(/(\d{4}):/gm, "$1\t");
+
+                //１行目にタイトル行を追加
+                res = "no\tip\tdate\ttime\ttype\tlog\n" + res;
 
 
                 // textareaへ結果を表示する          */
