@@ -317,6 +317,8 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 			                            	onclick="mysql2tab();">mysqlのselect結果をタブ区切りに</button>
                                         <button
                                             onclick="apache_to_tsv()">apache logをタブ区切りに</button><br />
+                                        <button
+                                            onclick="mail_to_markdown()">メールをマークダウンに</button><br />
 						              	<button
 			                            	onclick="c2a0remover()">C2A0を取り除く(動きません。誰か助けて。）</button><br />
 		                          	</td>
@@ -919,6 +921,40 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
 
             }
+
+
+
+            function mail_to_markdown() {
+
+                /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
+                var str = getText('#src');
+
+                /* 出力用の変数res。*/
+                var res = '';
+
+                //apache log形式の時刻をわかりやすい形式にする
+                //1行ずつ操作
+                $.each( str.split('\n'), function(i,e){
+
+                    e = e.replace(/[□◇◆■▲△▼○◎●]/gi, "# ");
+
+                    e = e.replace(/^[　\s]+?・/gi, "- ");
+
+                    res += e + "  \n";
+
+                });
+
+                // textareaへ結果を表示する          */
+                updateResult(res, '#dst');
+
+                // 次の入力に備え、数秒後にテキストエリアをクリア
+                resetTextArea();
+
+
+
+
+            }
+
         </script>      <!-- BOX1 スクリプト -->
 
 
