@@ -925,6 +925,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
 
             function mail_to_markdown() {
+                    console.log(123);
 
                 /* テキストエリアから文字列取得＆文頭・文末の改行を削除        */
                 var str = getText('#src');
@@ -932,11 +933,28 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                 /* 出力用の変数res。*/
                 var res = '';
 
-                //apache log形式の時刻をわかりやすい形式にする
+                // 記号付きの行を見出しにする
                 //1行ずつ操作
                 $.each( str.split('\n'), function(i,e){
+                    console.log(i);
+                    console.log(e);
 
-                    e = e.replace(/[□◇◆■▲△▼○◎●]/gi, "# ");
+                    e = e.replace(/^\s*[□◇◆■▲△▼○◯◎●]/gi, "# ");
+
+                    e = e.replace(/^\s*・/gi, " - ");
+
+
+                    e = e.replace(/^\s*①|❶|１．/gi, "1. ");
+                    e = e.replace(/^\s*②|❷|２．/gi, "2. ");
+                    e = e.replace(/^\s*③|❸|３．/gi, "3. ");
+                    e = e.replace(/^\s*④|❹|４．/gi, "4. ");
+                    e = e.replace(/^\s*⑤|❺|５．/gi, "5. ");
+                    e = e.replace(/^\s*⑥|❻|６．/gi, "6. ");
+                    e = e.replace(/^\s*⑦|７．/gi, "7. ");
+                    e = e.replace(/^\s*⑧|８．/gi, "8. ");
+                    e = e.replace(/^\s*⑨|９．/gi, "9. ");
+                    e = e.replace(/^\s*⑩|１０．/gi, "10. ");
+                    e = e.replace(/^\s*⑪|１１．/gi, "11. ");
 
                     e = e.replace(/^[　\s]+?・/gi, "- ");
 
