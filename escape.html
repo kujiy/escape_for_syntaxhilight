@@ -238,7 +238,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
         <div class="timerswitch">
             <table><tr><td>自動リセット</td><td><div id="enableTimerButton" class="switchon" onclick="enableTimer()"></div></td></tr></table>
     	</div>
-        <h3 class="whitetitle">エスケープ</h3>
+        <h3 class="whitetitle">変換したい文字列</h3>
         <textarea id="src" name="src" style="width:100%" rows="10"></textarea>
 
                   <div class="bgs1">
@@ -296,12 +296,12 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                       <div class="bgs1" >
                             <table>
 	                        	<tr>
-                        			<td ><h4>エスケープのみ | </h4>
+                        			<td ><h4>エスケープのみ</h4>
 						              	<button
 			                            	onclick="escapeDisplay('html')">HTMLタグ&lt;&gt;&quot;&amp; </button><br />
 		                          	</td>
 		                          	<td>
-		                          		<h4>バックスラッシュで |<br />
+		                          		<h4>バックスラッシュで<br />
 												エスケープ</h4>
 				                          <button
 			                            	onclick="escapeDisplay('&quot;', '/')">　&quot; と /　 </button>
@@ -801,7 +801,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
             // 動作チェック用のサンプルpacheLogを変換元テキストエリアへ挿入
             function insertSampleApacheLog() {
-                var text ="\n153.179.28.193 - - [12/Oct/2015:09:30:10 +0900] \"GET /samp.php?callback=11 HTTP/1.1\" 200 34349 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n172.22.123.153 - - [12/Oct/2015:09:30:16 +0900] \"GET /serv/authCheck/?a=7 HTTP/1.1\" 200 37 \"-\" \"Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16 ( .NET CLR 3.5.30729)\"\n153.179.28.193 - - [12/Oct/2015:09:30:16 +0900] \"GET /samp.php?callback=2 HTTP/1.1\" 200 34346 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n172.22.123.153 - - [12/Oct/2015:09:30:30 +0900] \"GET /serv/authCheck/?a=7 HTTP/1.1\" 200 37 \"-\" \"Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16 ( .NET CLR 3.5.30729)\"\n153.179.28.193 - - [12/Oct/2015:09:30:30 +0900] \"GET /samp.php?callback=13 HTTP/1.1\" 200 34349 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST /serv/guest/ HTTP/1.1\" 200 207 \"https://mapmark.fmworld.net/serv/login/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST /serv/start/guest/ HTTP/1.1\" 200 1133 \"https://mapmark.fmworld.net/serv/login/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST / HTTP/1.1\" 302 - \"https://mapmark.fmworld.net/serv/start/guest/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"";
+                var text ="\n153.179.28.193 - - [12/Oct/2015:09:30:10 +0900] \"GET /samp.php?callback=11 HTTP/1.1\" 200 34349 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n172.22.123.153 - - [12/Oct/2015:09:30:16 +0900] \"GET /serv/authCheck/?a=7 HTTP/1.1\" 200 37 \"-\" \"Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16 ( .NET CLR 3.5.30729)\"\n153.179.28.193 - - [12/Oct/2015:09:30:16 +0900] \"GET /samp.php?callback=2 HTTP/1.1\" 200 34346 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n172.22.123.153 - - [12/Oct/2015:09:30:30 +0900] \"GET /serv/authCheck/?a=7 HTTP/1.1\" 200 37 \"-\" \"Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16 ( .NET CLR 3.5.30729)\"\n153.179.28.193 - - [12/Oct/2015:09:30:30 +0900] \"GET /samp.php?callback=13 HTTP/1.1\" 200 34349 \"https://example.com/test?sh=1#/\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; MAFSJS; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST /serv/guest/ HTTP/1.1\" 200 207 \"https://mapmark.fmworld.net/serv/login/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST /serv/start/guest/ HTTP/1.1\" 200 1133 \"https://mapmark.fmworld.net/serv/login/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"\n121.95.51.111 - - [12/Oct/2015:09:30:32 +0900] \"POST / HTTP/1.1\" 302 - \"https://mapmark.fmworld.net/serv/start/guest/\" \"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko\"\n180.198.159.4 - - [25/Feb/2016:09:46:10 +0900] \"GET /api/tabi_spot_list.php?callback=jQuery203017152280536233116_1456360954757&centerlat=34.94692906815382&centerlng=137.14934462518695&centerrange=50000&zoom=14&lang=ja&page_size=20&page=1&sort=5&cidstr=1%2C2%2C6%2C4%2C7%2C5%2C8&female=0&spotkbn=2&area=&keyword=&tile_scroll_page=0&tile_scroll_id=0&_=1456360954782 HTTP/1.1\" 200 47788 \"https://mapmark.fmworld.net/?search=1&filter_spotkbn=rrb&filter_keyword=\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko\"\n153.159.139.180 - mapmark [25/Feb/2016:09:46:02 +0900] \"GET /api/tabi_spot_list.php?apikey=9e9837dd1e1dee136eb44ab9a43c1a65&tkn=34fc946de9af80128704b9990058c00653e5b92effe87eceb1c38fa30719b656&centerlat=34.89222738404376&centerlng=134.081810452044&centerrange=508&keyword=%E9%A3%9F%E5%A0%82&spotkbn=2&sort=5&female=0&zoom=16.072794 HTTP/1.1\" 200 45997 \"-\" \"Dalvik/1.6.0 (Linux; U; Android 4.4.2; M01 Build/V01R15L)\"\n153.159.139.180 - mapmark [25/Feb/2016:09:46:03 +0900] \"GET /api/tabi_spot_list.php?apikey=9e9837dd1e1dee136eb44ab9a43c1a65&tkn=34fc946de9af80128704b9990058c00653e5b92effe87eceb1c38fa30719b656&centerlat=34.89369286390309&centerlng=134.08656165003777&centerrange=508&keyword=%E9%A3%9F%E5%A0%82&spotkbn=2&sort=5&female=0&zoom=16.072794 HTTP/1.1\" 200 46232 \"-\" \"Dalvik/1.6.0 (Linux; U; Android 4.4.2; M01 Build/V01R15L)\"\n180.198.159.4 - - [25/Feb/2016:09:46:10 +0900] \"GET /api/tabi_spot_list.php?callback=jQuery203017152280536233116_1456360954757&centerlat=34.94692906815382&centerlng=137.14934462518695&centerrange=50000&zoom=14&lang=ja&page_size=20&page=1&sort=5&cidstr=1%2C2%2C6%2C4%2C7%2C5%2C8&female=0&spotkbn=2&area=&keyword=&tile_scroll_page=0&tile_scroll_id=0&_=1456360954782 HTTP/1.1\" 200 47788 \"https://mapmark.fmworld.net/?search=1&filter_spotkbn=rrb&filter_keyword=\" \"Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko\"\n153.159.139.180 - mapmark [25/Feb/2016:09:46:05 +0900] \"GET /api/tabi_spot_list.php?apikey=9e9837dd1e1dee136eb44ab9a43c1a65&tkn=34fc946de9af80128704b9990058c00653e5b92effe87eceb1c38fa30719b656&centerlat=34.892590387683136&centerlng=134.08780317753553&centerrange=508&keyword=%E9%A3%9F%E5%A0%82&spotkbn=2&sort=5&female=0&zoom=16.072794 HTTP/1.1\" 200 46233 \"-\" \"Dalvik/1.6.0 (Linux; U; Android 4.4.2; M01 Build/V01R15L)\"";
                 $('#src').val(text);
                 $('#src2').val(text);
 
@@ -894,7 +894,7 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
                     hhmmss = moment(apache_datetime, 'DD/MMM/YYYY:HH:mm:ss Z').format("HH:mm:ss")
 
                     out = e.replace(/\s\d{2}\/\w{3}\/20\d{2}:\d{2}:\d{2}:\d{2}/gi, "\t"+yyyymmdd+"\t"+hhmmss);
-
+                    // console.log(out);
                     //行番号を付与
                     res += i + "\t" + out + "\n";
                 });
@@ -902,14 +902,19 @@ background-image:url(http://livedoor.blogimg.jp/qoozy/imgs/b/5/b5f1159c.png);
 
                 //まとめて時刻等をタブ区切りにする
                 res = res.replace(/ - - \[/gm, "\t");
+                res = res.replace(/ - \w* \[/gm, "\t");
                 res = res.replace(/\s\+0900]\s/gm, "\t");
                 res = res.replace(/GET\s/gm, "GET\t");
                 res = res.replace(/POST\s/gm, "POST\t");
                 res = res.replace(/"/g, "");
                 res = res.replace(/(\d{4}):/gm, "$1\t");
+                // http_status, port
+                res = res.replace(/HTTP\/1.1\s(\d+)\s(\d+)?\s?-?/gm, "\t$1\t$2\t");
+                // User-agent
+                res = res.replace(/\sMozilla/gm, "\tMozilla");
 
                 //１行目にタイトル行を追加
-                res = "no\tip\tdate\ttime\ttype\tlog\n" + res;
+                res = "no\tip\tdate\ttime\ttype\tlog\thttp_status\tport?\ttarget?\tuser-agent\n" + res;
 
 
                 // textareaへ結果を表示する          */
